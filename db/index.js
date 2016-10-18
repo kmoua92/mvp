@@ -35,7 +35,7 @@ exports.dbUserGet = function(user, cb) {
     // host     : 'localhost',
     user: 'root',
     password: 'p',
-    database: 'chat'
+    database: 'mvp'
   });
 
   connection.connect();
@@ -56,7 +56,7 @@ exports.dbPlayersGet = function(cb) {
     // host     : 'localhost',
     user: 'root',
     password: 'p',
-    database: 'chat'
+    database: 'mvp'
   });
 
   connection.connect();
