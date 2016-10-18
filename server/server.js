@@ -54,16 +54,6 @@ var requestHandler = function(req, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
 var server = http.createServer(requestHandler);
 server.listen(3000);
 console.log('Server listening on port 3000...');
