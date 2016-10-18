@@ -6,12 +6,7 @@ var userId = 0;
 
 // fetch all players from database
 exports.dbInit = function() {
-  exports.dbPlayersGet((messages) => { 
-    objectId = messages.length; 
-  });
-  exports.dbUsersGet((users) => {
-    userId = users.length;
-  });
+  // any queries need to be made on server startup
 };
 
 
