@@ -1,4 +1,5 @@
 var http = require('http');
+var db = require('../db/index');
 
 var headers = {
 	'Content-Type': 'application/json'
@@ -32,5 +33,7 @@ var requestHandler = function(req, res) {
 
 var server = http.createServer(requestHandler);
 server.listen(3000);
+
+db.dbInit();
 
 module.exports = server;
