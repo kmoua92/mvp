@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS players;
 		
 CREATE TABLE players (
   playerId INTEGER PRIMARY KEY,
-  name INTEGER
+  name VARCHAR(40)
 );
 
 -- ---
@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS teams;
 		
 CREATE TABLE teams (
   teamId INTEGER PRIMARY KEY,
-  name INTEGER
+  name VARCHAR(40)
 );
 
 
