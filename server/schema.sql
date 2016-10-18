@@ -151,7 +151,7 @@ INSERT INTO players VALUES
 
 INSERT INTO players VALUES
 -- id, name
-('005','Doug Christie');
+('005','Vlade Divac');
 
 
 -- TEST TEAMS
