@@ -1,0 +1,12 @@
+{
+  "name": "ShouldHePlay",
+  "version": "1.0.0",
+  "description": "Build a minimum viable product in 36 hours",
+  "author": "Ker Moua <kermoua92@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "backbone": "^1.3.3",
+    "jquery": "^3.1.1"
+  }
+}
