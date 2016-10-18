@@ -76,17 +76,17 @@ app.playerSearch = function(event) {
 
       // generate column headers (stat categories)
       for (var cat in data[0]) {
-        var $cat = $('<td></td>');
+        var $cat = $('<td class="columnHeadings"></td>');
         $cat.text(cat);
         $colHeadings.append($cat);
       }
 
       // generate a row for each game
       data.forEach(function(game) {
-      var $game = $('<tr class="playerStats"></tr>');
+      var $game = $('<tr class="game"></tr>');
         // generate state for each category
         for (var stat in game) {
-          var $stat = $('<td></td>');
+          var $stat = $('<td class="playerStat"></td>');
           $stat.text(game[stat]);
           $game.append($stat);
         }
