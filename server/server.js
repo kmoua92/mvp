@@ -19,13 +19,35 @@ var requestHandler = function(req, res) {
 			});
 		}
 
+		
+
 		// res.writeHead(200, headers);
 		// res.end('GET request received and handled');
 	}
 
 	if (req.method === 'POST') {
-		res.writeHead(200, headers);
-		res.end('POST request received and handled');
+
+		if (req.url === '/stats') {
+			req.on('data', function(data){
+				playerName = JSON.parse(data);
+
+				db.dbStatsPost(playerName, function(dbData){
+
+					var stats  = JSON.stringify(dbData);
+
+					if (dbData.length === 0) {
+						res.writeHead(404, headers);
+						res.end('Player not found');
+					} else {
+						res.writeHead(200, headers);
+						res.end(stats);
+					}
+				});
+			});
+		}
+
+		// res.writeHead(200, headers);
+		// res.end('POST request received and handled');
 	}
 
 };

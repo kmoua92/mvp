@@ -63,7 +63,28 @@ exports.dbPlayersGet = function(cb) {
 
   connection.query('select * from players;', function(err, rows, fields) {
     if (err) {
-      throw err;
+      cb(err);
+    }
+    cb(rows);
+  });
+  
+  connection.end();
+};
+
+exports.dbStatsPost = function(playerName, cb) {
+  var connection = mysql.createConnection({
+    // host     : 'localhost',
+    user: 'root',
+    password: 'p',
+    database: 'mvp'
+  });
+
+  connection.connect();
+
+  connection.query('select * from stats inner join players where players.playerId = stats.playerId && players.name = "' + playerName + '";', 
+    function(err, rows, fields) {
+    if (err) {
+      cb(err);
     }
     cb(rows);
   });
