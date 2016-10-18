@@ -5,19 +5,25 @@ var app = {
 };
 
 app.init = function() {
-  app.fetch();
+  app.fetchPlayers();
 };
 
 // fetch all players
-app.fetch = function() {
+app.fetchPlayers = function() {
   $.ajax({
     url: this.server + '/players',
     type: 'GET',
     // data: 'api_key=' + window.api_key + '&opponent_id=1610612753&player_id=202331',   
     success: function(data) {
     	data = JSON.parse(data);
-      // loop 
+      // loop through and display each name in a list
     	console.log('Request succeeded: ', data);
+
+      data.forEach(function(player) {
+        var $players = $('<ul class="players"></ul>');
+        $players.text(player.name);
+        $('#container').append($players);
+      });
     },
     error: function(error) {
       console.log('Request failed: ', error);
