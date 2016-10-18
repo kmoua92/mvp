@@ -1,16 +1,17 @@
 // Make request to server
 
 var app = {
-  server: '127.0.0.1:3000'
+  server: 'http://127.0.0.1:3000'
 };
 
 app.init = function() {
   app.fetch();
 };
 
+// fetch all players
 app.fetch = function() {
   $.ajax({
-    url: this.server,
+    url: this.server + '/players',
     type: 'GET',
     // data: 'api_key=' + window.api_key + '&opponent_id=1610612753&player_id=202331',   
     success: function(data) {
