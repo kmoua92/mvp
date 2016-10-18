@@ -37,7 +37,7 @@ CREATE TABLE stats (
 DROP TABLE IF EXISTS players;
 		
 CREATE TABLE players (
-  id INTEGER PRIMARY KEY,
+  playerId INTEGER PRIMARY KEY,
   name INTEGER
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE players (
 DROP TABLE IF EXISTS teams;
 		
 CREATE TABLE teams (
-  id INTEGER PRIMARY KEY,
+  teamId INTEGER PRIMARY KEY,
   name INTEGER
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE teams (
 DROP TABLE IF EXISTS users;
     
 CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
+  userId INTEGER PRIMARY KEY,
   username VARCHAR(16),
   password VARCHAR(16)
 );
@@ -71,8 +71,8 @@ CREATE TABLE users (
 -- Foreign Keys 
 -- ---
 
-ALTER TABLE stats ADD FOREIGN KEY (playerId) REFERENCES players (id);
-ALTER TABLE stats ADD FOREIGN KEY (opponentId) REFERENCES teams (id);
+ALTER TABLE stats ADD FOREIGN KEY (playerId) REFERENCES players (playerId);
+ALTER TABLE stats ADD FOREIGN KEY (opponentId) REFERENCES teams (teamId);
 
 -- ---
 -- Table Properties
