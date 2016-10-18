@@ -1,7 +1,7 @@
 // Make request to server
 
 var app = {
-  server: 'http://api.probasketballapi.com/player' 
+  server: '127.0.0.1:3000'
 };
 
 app.init = function() {
@@ -11,25 +11,23 @@ app.init = function() {
 app.fetch = function() {
   $.ajax({
     url: this.server,
-    type: 'POST',
-    // headers: {
-    //   'Content-Type': 'application/JSON'
-    // },
-    data: 'api_key=' + window.api_key + '&first_name=Kevin&last_name=Durant',   
+    type: 'GET',
+    // data: 'api_key=' + window.api_key + '&opponent_id=1610612753&player_id=202331',   
     success: function(data) {
-    	// data = JSON.parse(data);
+    	data = JSON.parse(data);
+      // loop 
     	console.log('Request succeeded: ', data);
     },
     error: function(error) {
       console.log('Request failed: ', error);
     }
   });
-  // $.get(this.server).done(function (data) {
-  //   console.log(data);
-  // });
 };
 
 
 $(function(){
 	app.init();
 });
+
+// fetch players, build table
+// fetch player stats, build table
