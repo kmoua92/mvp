@@ -3,6 +3,10 @@ td {
 	border-width: 1px;
 }
 
+#container {
+	margin-top: 25px;
+}
+
 .columnHeadings {
 	font-weight: bold;
 }
