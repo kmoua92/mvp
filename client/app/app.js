@@ -9,6 +9,7 @@ app.init = function() {
   $('.player').on('click', app.playerClick);
   $('#playerQuery').on('submit', app.playerSearch);
   $('#teamQuery').on('submit', app.teamSearch);
+  $('#filterByQuery').on('submit', app.filterSearch);
 
   app.fetchPlayers();
 };
@@ -23,6 +24,8 @@ app.fetchPlayers = function() {
     	data = JSON.parse(data);
       // loop through and display each name in a list
     	console.log('Request succeeded: ', data);
+
+      $('#container').text('Active Players');
 
       data.forEach(function(player) {
         var $players = $('<ul class="players"></ul>');
@@ -155,6 +158,20 @@ app.teamSearch = function (event) {
       throw error;
     }
   });
+};
+
+app.filterSearch = function(event) {
+  // only show tr that have a td that matches the search
+  event.preventDefault();
+  var filterTerm = $('#filterSearch').val();
+
+  $('#filterSearch').val('');
+
+  var filteredDOM = $('#playerStat').filter(function(index) {
+    return $(this).text() === filterTerm;
+  });
+
+  console.log(filteredDOM);
 };
 
 
