@@ -71,9 +71,8 @@ exports.dbPlayersGet = function(cb) {
   connection.end();
 };
 
-exports.dbStatsPost = function(playerName, cb) {
+exports.dbPlayerPost = function(playerName, cb) {
   var connection = mysql.createConnection({
-    // host     : 'localhost',
     user: 'root',
     password: 'p',
     database: 'mvp'
@@ -82,6 +81,26 @@ exports.dbStatsPost = function(playerName, cb) {
   connection.connect();
 
   connection.query('select * from stats inner join players where players.playerId = stats.playerId && players.name = "' + playerName + '";', 
+    function(err, rows, fields) {
+    if (err) {
+      cb(err);
+    }
+    cb(rows);
+  });
+  
+  connection.end();
+};
+
+exports.dbTeamPost = function(teamName, cb) {
+  var connection = mysql.createConnection({
+    user: 'root',
+    password: 'p',
+    database: 'mvp'
+  });
+
+  connection.connect();
+
+  connection.query('select * from stats inner join teams where teams.teamId = stats.homeId && teams.name = "' + teamName + '";', 
     function(err, rows, fields) {
     if (err) {
       cb(err);

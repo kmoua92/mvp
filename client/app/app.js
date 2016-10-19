@@ -7,7 +7,8 @@ var app = {
 app.init = function() {
 
   $('.player').on('click', app.playerClick);
-  $('#searchBar').on('submit', app.playerSearch);
+  $('#playerQuery').on('submit', app.playerSearch);
+  $('#teamQuery').on('submit', app.teamSearch);
 
   app.fetchPlayers();
 };
@@ -56,13 +57,64 @@ app.playerClick = function(event) {
 
 app.playerSearch = function(event) {
   event.preventDefault();
-  var playerName = $('#searchInput').val();
-  $('#searchInput').val('');
+  var playerName = $('#searchPlayer').val();
+  $('#searchPlayer').val('');
   
   $.ajax({
-    url: app.server + '/stats',
+    url: app.server + '/stats/player',
     type: 'POST',
     data: JSON.stringify(playerName),
+    success: function(data) {
+      data = JSON.parse(data);
+
+      $('#container').html('');
+
+      var $table = $('<table></table>');
+
+      var $colHeadings = $('<tr></tr>');
+
+      $table.prepend($colHeadings);
+
+      // generate column headers (stat categories)
+      for (var cat in data[0]) {
+        var $cat = $('<td class="columnHeadings"></td>');
+        $cat.text(cat);
+        $colHeadings.append($cat);
+      }
+
+      // generate a row for each game
+      data.forEach(function(game) {
+      var $game = $('<tr class="game"></tr>');
+        // generate state for each category
+        for (var stat in game) {
+          var $stat = $('<td class="playerStat"></td>');
+          $stat.text(game[stat]);
+          $game.append($stat);
+        }
+      // append each game to the table
+      $table.append($game);
+      });
+
+      $('#container').append($table);
+      console.log('SUCCESSFUL QUERY');
+      console.log(data);
+    },
+    error: function(error) {
+      console.log('FAILED QUERY');
+      throw error;
+    }
+  });
+};
+
+app.teamSearch = function (event) {
+  event.preventDefault();
+  var teamName = $('#searchTeam').val();
+  $('#searchTeam').val('');
+  
+  $.ajax({
+    url: app.server + '/stats/team',
+    type: 'POST',
+    data: JSON.stringify(teamName),
     success: function(data) {
       data = JSON.parse(data);
 
