@@ -100,7 +100,7 @@ exports.dbTeamPost = function(teamName, cb) {
 
   connection.connect();
 
-  connection.query('select * from stats inner join teams where teams.teamId = stats.homeId && teams.name = "' + teamName + '";', 
+  connection.query('select * from stats inner join teams where teams.teamId = stats.teamId && teams.name = "' + teamName + '";', 
     function(err, rows, fields) {
     if (err) {
       cb(err);

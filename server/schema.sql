@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS stats;
 CREATE TABLE stats (
   playerId INTEGER,
   opponentId INTEGER,
-  homeId INTEGER,
+  teamId INTEGER,
   fg INTEGER,
   ft INTEGER,
   3pm INTEGER,
@@ -75,6 +75,7 @@ CREATE TABLE users (
 
 ALTER TABLE stats ADD FOREIGN KEY (playerId) REFERENCES players (playerId);
 ALTER TABLE stats ADD FOREIGN KEY (opponentId) REFERENCES teams (teamId);
+ALTER TABLE stats ADD FOREIGN KEY (teamId) REFERENCES teams (teamId);
 
 -- ---
 -- Table Properties
