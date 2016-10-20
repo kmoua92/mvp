@@ -1,0 +1,21 @@
+{
+  "name": "ShouldHePlay",
+  "description": "Build a minimum viable product in 36 hours",
+  "main": "",
+  "authors": [
+    "Ker Moua <kermoua92@gmail.com>"
+  ],
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/kmoua92/2016-09-mvp",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/app/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

@@ -21,9 +21,9 @@ app.fetchPlayers = function() {
     type: 'GET',
     // data: 'api_key=' + window.api_key + '&opponent_id=1610612753&player_id=202331',   
     success: function(data) {
-    	data = JSON.parse(data);
+      data = JSON.parse(data);
       // loop through and display each name in a list
-    	console.log('Request succeeded: ', data);
+      console.log('Request succeeded: ', data);
 
       $('#container').text('Active Players');
 
@@ -175,9 +175,11 @@ app.filterSearch = function(event) {
 };
 
 
-$(function(){
-	app.init();
+$(function() {
+  app.init();
 });
 
+
+// module.exports = app;
 // fetch players, build table
 // fetch player stats, build table

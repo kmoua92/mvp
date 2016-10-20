@@ -3,17 +3,27 @@ var db = require('../db/index');
 var path = require('path');
 var express = require('express');
 
-var headers = {
-	'access-control-allow-origin': '*',
-  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'access-control-allow-headers': 'content-type, accept'
-};
-
 var app = express();
 
+app.use(express.static('./client/app'));
 
-app.use(express.static(path.join(__dirname, '../client/assets')));
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', req.get('Origin') || '*');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.header('Access-Control-Expose-Headers', 'Content-Length');
+  res.header('Access-Control-Allow-Headers', 'Accept, Authorization, Content-Type, X-Requested-With, Range');
+  if (req.method === 'OPTIONS') {
+    return res.send(200);
+  } else {
+    return next();
+  }
+});
 
+// app.get('/', function (req, res) {
+// 	console.log('======================================================')
+// 	res.sendFile(__dirname + 'client/assets/index.html');
+// });
 
 app.get('/players', function (req, res) {
 
@@ -21,12 +31,11 @@ app.get('/players', function (req, res) {
 				
 		players = JSON.stringify(players);
 			
-		res.setHeaders(headers);
+		// res.setHeaders(headers);
 		res.status(200).send(players);
 	});
 
 });
-
 
 
 app.listen(3000, function () {
