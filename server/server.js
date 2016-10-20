@@ -11,11 +11,23 @@ var headers = {
 
 var app = express();
 
+
 app.use(express.static(path.join(__dirname, '../client/assets')));
 
-// app.get('/', function (req, res) {
-//   res.send('Hello World!');
-// });
+
+app.get('/players', function (req, res) {
+
+	db.dbPlayersGet(function(players) {
+				
+		players = JSON.stringify(players);
+			
+		res.setHeaders(headers);
+		res.status(200).send(players);
+	});
+
+});
+
+
 
 app.listen(3000, function () {
   console.log('Listening to port 3000...');
