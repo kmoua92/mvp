@@ -6,7 +6,7 @@ var url = require('url');
 
 var app = express();
 
-app.use(express.static('./client/app'));
+app.use(express.static('client/app'));
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', req.get('Origin') || '*');
