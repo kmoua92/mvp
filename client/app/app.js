@@ -60,13 +60,13 @@ app.playerClick = function(event) {
 
 app.playerSearch = function(event) {
   event.preventDefault();
-  var playerName = $('#searchPlayer').val();
+  var playerName = $('#searchPlayer').val().toLowerCase().split(' ');
   $('#searchPlayer').val('');
   
   $.ajax({
-    url: app.server + '/stats/player',
-    type: 'POST',
-    data: JSON.stringify(playerName),
+    url: app.server + '/stats/?player=' + playerName.join('-'),
+    type: 'GET',
+    // data: JSON.stringify(playerName),
     success: function(data) {
       data = JSON.parse(data);
 

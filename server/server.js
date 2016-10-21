@@ -2,6 +2,7 @@ var http = require('http');
 var db = require('../db/index');
 var path = require('path');
 var express = require('express');
+var url = require('url');
 
 var app = express();
 
@@ -31,10 +32,17 @@ app.get('/players', function (req, res) {
 				
 		players = JSON.stringify(players);
 			
-		// res.setHeaders(headers);
+		// res.setHeaders(header-s);
 		res.status(200).send(players);
 	});
 
+});
+
+app.get('/stats/*', function (req, res) {
+  var urlParts = url.parse(req.url, true);
+  var playerName = urlParts.query.player.split('-').join(' ');
+  // query database
+    // stringify data before sending back to client
 });
 
 
